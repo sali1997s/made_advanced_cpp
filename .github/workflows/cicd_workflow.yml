@@ -38,14 +38,15 @@ jobs:
       # Execute tests defined by the CMake configuration.  
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
       run: ./test_solution
-      
-    - name: installing lcov
-      run: apt install lcov
-
-    - name: test_cov
-      working-directory: ./hw1/build
-      run: lcov -t "tests/test_solution" -o coverage.info -c -d src
 
     - name: valgrid_check
       working-directory: ./hw1/build/
       run: valgrind --tool=memcheck --leak-check=yes ./solution 
+
+
+    - name: installing lcov
+      run: apt install lcov -y
+
+    - name: test_cov
+      working-directory: ./hw1/build
+      run: lcov -t "tests/test_solution" -o coverage.info -c -d src
