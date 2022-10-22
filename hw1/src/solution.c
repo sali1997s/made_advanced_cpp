@@ -40,24 +40,24 @@ float area_triangle(Point* a, Point* b, Point* c){
 }
 
 float* min_area_tetrahedron(Point* a, Point* b, Point* c, Point* d){
-    float* min_area;
-    float s0 = area_triangle(a, b, c);
-    min_area = &s0;
-    //min_area = s0;
-    float s1 = area_triangle(a, b, d);
-    float s2 = area_triangle(a, c, d);
-    float s3 = area_triangle(b, c, d);
-    if (*min_area > s1){
+    static float min_area;
+    
+    const float s0 = area_triangle(a, b, c);
+    const float s1 = area_triangle(a, b, d);
+    const float s2 = area_triangle(a, c, d);
+    const float s3 = area_triangle(b, c, d);
+    min_area = s0;
+    if (min_area > s1){
         //*min_area = s1;
-        min_area = &s1;
+        min_area = s1;
     }
-    if (*min_area > s2){
+    if (min_area > s2){
         //*min_area = s2;
-        min_area = &s2;
+        min_area = s2;
     }
-    if (*min_area > s3){
+    if (min_area > s3){
         //*min_area = s3;
-        min_area = &s3;
+        min_area = s3;
     }
-    return min_area;
+    return &min_area;
 }
