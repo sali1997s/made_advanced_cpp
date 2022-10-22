@@ -14,4 +14,6 @@ Vector* cross_product(Vector* a, Vector* b);
 
 float vector_norm(Vector* v);
 
+float area_triangle(Point* a, Point* b, Point* c);
+
 float* min_area_tetrahedron(Point* a, Point* b, Point* c, Point* d);
