@@ -30,13 +30,16 @@ jobs:
       working-directory: ./hw1/build/tests
       run: ./test_solution
 
-    - name: valgrind test
-      working-directory: ./hw1/build/tests
-      run: valgrind --tool=memcheck --leak-check=yes ./test_solution 
-
     - name: test coverage 
       working-directory: ./hw1/build
       run: |
         apt install lcov -y
         lcov -t "tests/test_solution" -o coverage.info -c -d src
         genhtml -o report coverage.info
+
+    - name: valgrind test
+      working-directory: ./hw1/build/tests
+      run: |
+        export ASAN_OPTIONS=verify_asan_link_order=0
+        valgrind --tool=memcheck --leak-check=yes ./test_solution
+
