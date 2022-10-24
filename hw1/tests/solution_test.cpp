@@ -54,6 +54,7 @@ TEST(Src, TestBasicsPermute1) {
 
 TEST(Src, TestBasicsPermute2) {
     FILE* fp = fopen("../../test.txt","r");
+
     Point *a = (Point*) malloc(sizeof(Point));
     Point *b = (Point*) malloc(sizeof(Point));
     Point *c = (Point*) malloc(sizeof(Point));

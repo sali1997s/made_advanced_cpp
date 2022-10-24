@@ -4,15 +4,26 @@
 
 int main(){
     FILE* fp = fopen("../test.txt","r");
+    if (!fp){
+        return -1;
+    }
     Point* a = malloc(sizeof(Point));
     Point* b = malloc(sizeof(Point));
     Point* c = malloc(sizeof(Point));
     Point* d = malloc(sizeof(Point));
 
-    fscanf(fp, "%f %f %f", &a->x, &a->y, &a->z);
-    fscanf(fp, "%f %f %f", &b->x, &b->y, &b->z);
-    fscanf(fp, "%f %f %f", &c->x, &c->y, &c->z);
-    fscanf(fp, "%f %f %f", &d->x, &d->y, &d->z);
+    if (fscanf(fp, "%f %f %f", &a->x, &a->y, &a->z) != 3){
+        return -1;
+    }
+    if (fscanf(fp, "%f %f %f", &b->x, &b->y, &b->z) != 3){
+        return -1;
+    };
+    if (fscanf(fp, "%f %f %f", &c->x, &c->y, &c->z) != 3){
+        return -1;
+    };
+    if (fscanf(fp, "%f %f %f", &d->x, &d->y, &d->z) != 3){
+        return -1;
+    };
     fclose(fp);
 
     float* result = min_area_tetrahedron(a, b, c, d);
